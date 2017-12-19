@@ -96,7 +96,19 @@ describe('ElementView', () => {
             expect(view.fakeAction).to.have.been.callCount(1);
         });
 
+        it('test onClick after resetEvents', () => {
+            view.resetEvents();
+            document.querySelector('.sample').click();
+            expect(view.fakeAction).to.have.been.callCount(1);
+        });
+
         it('test onCustomEvent', () => {
+            document.querySelector('.sample').dispatchEvent(new Event('custom'));
+            expect(view.fakeAction).to.have.been.callCount(1);
+        });
+
+        it('test onCustomEvent after resetEvents', () => {
+            view.resetEvents();
             document.querySelector('.sample').dispatchEvent(new Event('custom'));
             expect(view.fakeAction).to.have.been.callCount(1);
         });
@@ -110,6 +122,16 @@ describe('ElementView', () => {
         });
 
         it('test onFocusButton', () => {
+            document.querySelector('.sample__button').dispatchEvent(new Event('focus', {
+                bubbles: true
+            }));
+
+            expect(view.fakeAction).to.have.been.callCount(1);
+        });
+
+        it('test onFocusButton after resetEvents', () => {
+            view.resetEvents();
+
             document.querySelector('.sample__button').dispatchEvent(new Event('focus', {
                 bubbles: true
             }));
