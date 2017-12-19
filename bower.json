@@ -1,6 +1,6 @@
 {
   "name": "element-view",
-  "description": "Element View",
+  "description": "Simple View layer for HTMLElement",
   "keywords": [
     "view",
     "element",

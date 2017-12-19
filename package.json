@@ -1,7 +1,7 @@
 {
   "name": "element-view",
   "version": "1.0.0",
-  "description": "Element View",
+  "description": "Simple View layer for HTMLElement",
   "keywords": [
     "view",
     "element",
