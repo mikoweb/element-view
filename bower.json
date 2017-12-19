@@ -1,0 +1,27 @@
+{
+  "name": "element-view",
+  "description": "Element View",
+  "keywords": [
+    "view",
+    "element",
+    "dom",
+    "events",
+    "ftdomdelegate",
+    "dom delegate"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "authors": [
+    "Rafał Mikołajun"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikoweb/element-view.git"
+  },
+  "license": "BSD"
+}

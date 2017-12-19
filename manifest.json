@@ -1,0 +1,6 @@
+{
+  "name": "element-view",
+  "short_name": "element-view",
+  "start_url": "/",
+  "display": "standalone"
+}

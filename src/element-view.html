@@ -1,0 +1,110 @@
+<!--
+@license
+Copyright (c) 2017 Rafał Mikołajun. All rights reserved.
+This code may only be used under the BSD style license found at LICENSE file.
+-->
+
+<link rel="import" href="../../polymer/lib/utils/mixin.html">
+
+<script>
+    (function() {
+        'use strict';
+
+        /**
+         * Mixin that provides ElementView for custom Polymer elements.
+         *
+         * @mixinFunction
+         * @polymer
+         */
+        window.ElementViewMixin = Polymer.dedupingMixin((superClass) => {
+            /**
+             * @polymer
+             * @mixinClass
+             */
+            class Mixin extends superClass {
+                /**
+                 * @param {Object} properties
+                 *
+                 * @return {Object}
+                 */
+                static addModelProperty(properties) {
+                    properties.model = {
+                        type: Object,
+                        notify: true,
+                    };
+
+                    return properties;
+                }
+
+                /**
+                 * @return {Object}
+                 */
+                static get properties() {
+                    return this.addModelProperty({});
+                }
+
+                /**
+                 * Event listeners.
+                 *
+                 * @return {Object.<String, Function|Object.<String, Function>>}
+                 */
+                get events() {
+                    return {};
+                }
+
+                /**
+                 * Direct access to Delegate.
+                 *
+                 * @return {Delegate}
+                 */
+                get delegate() {
+                    return this._view.delegate;
+                }
+
+                constructor() {
+                    super();
+                    this._view = new ElementView(document.createElement('div'));
+                }
+
+                /**
+                 * @inheritDoc
+                 */
+                ready() {
+                    super.ready();
+                    const listeners = this.events;
+
+                    class View extends ElementView {
+                        get events() {
+                            return listeners;
+                        }
+                    }
+
+                    Object.defineProperty(this, '_view', {
+                        enumerable: false,
+                        configurable: false,
+                        writable: false,
+                        value: new View(this.shadowRoot),
+                    });
+                }
+
+                /**
+                 * Remove all registered listeners and attach them again.
+                 */
+                resetEvents() {
+                    this._view.resetEvents();
+                }
+
+                /**
+                 * Taking Input.
+                 *
+                 * @param {Object} model
+                 */
+                input(model) {
+                    this.model = model;
+                }
+            }
+
+            return Mixin;
+        });
+    })();
+</script>
