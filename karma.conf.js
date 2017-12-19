@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'bundle/element-view.js',
-      'test/**/**.js'
+      'tests/**/**.js'
     ],
 
 

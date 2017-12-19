@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test ElementViewMixin</title>
+    <script src="../bundle/element-view.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../src/element-view.html">
+</head>
+<body>
+    <dom-module id="test-element">
+        <template>
+            <div class="test">
+                <button class="test__button"></button>
+            </div>
+        </template>
+    </dom-module>
+    <test-fixture id="Fixture">
+        <template>
+            <test-element></test-element>
+        </template>
+    </test-fixture>
+    <script>
+        suite('ElementViewMixin', () => {
+            const createElement = () => {
+                const name = 'test-element';
+                if (!window.customElements.get(name)) {
+                    window.customElements.define(name, class TestElement extends ElementViewMixin(Polymer.Element) {
+                        static get is() {
+                            return name;
+                        }
+
+                        get events() {
+                            return {
+                                customEvent: this._test
+                            };
+                        }
+
+                        _test() {
+                            void(0);
+                        }
+                    });
+                }
+            };
+
+            test('Check if methods exist', () => {
+                createElement();
+                const element = fixture('Fixture');
+                const ElementClass = window.customElements.get('test-element');
+
+                expect(element).to.be.an.instanceof(ElementClass);
+                expect(element).to.have.property('events');
+                expect(element).to.have.property('delegate');
+                expect(element).to.have.property('_view');
+                expect(element).to.have.property('input');
+                expect(element).to.have.property('resetEvents');
+                expect(ElementClass).to.have.property('properties');
+                expect(ElementClass).to.have.property('addModelProperty');
+            });
+
+            test('Test input method', () => {
+                createElement();
+                const element = fixture('Fixture');
+
+                expect({}).to.be.deep.equal(element.model);
+                element.input({foo: 'ok'});
+                expect({foo: 'ok'}).to.be.deep.equal(element.model);
+                element.input({});
+                expect({}).to.be.deep.equal(element.model);
+            });
+
+            test('Check default properties', () => {
+                createElement();
+                const element = fixture('Fixture');
+                const ElementClass = window.customElements.get('test-element');
+
+                expect({
+                    model: {
+                        type: Object,
+                        notify: true,
+                        value: {}
+                    }
+                }).to.be.deep.equal(ElementClass.properties);
+
+                expect(ElementClass.addModelProperty({})).to.be.deep.equal(ElementClass.properties);
+            });
+
+            test('Check delegate property', () => {
+                createElement();
+                const element = fixture('Fixture');
+
+                expect(element._view.delegate).to.be.equal(element.delegate);
+            });
+
+            test('Check events property', () => {
+                createElement();
+                const element = fixture('Fixture');
+                const events = element.events;
+
+                expect(events).to.have.property('customEvent');
+                expect(events).to.be.deep.equal(element._view.events);
+            });
+        });
+    </script>
+</body>
+</html>
