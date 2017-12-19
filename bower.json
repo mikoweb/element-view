@@ -7,7 +7,8 @@
     "dom",
     "events",
     "ftdomdelegate",
-    "dom delegate"
+    "dom delegate",
+    "polymer mixin"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0"

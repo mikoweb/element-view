@@ -8,7 +8,8 @@
     "dom",
     "events",
     "ftdomdelegate",
-    "dom delegate"
+    "dom delegate",
+    "polymer mixin"
   ],
   "main": "bundle/element-view.js",
   "repository": "https://github.com/mikoweb/element-view",
