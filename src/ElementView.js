@@ -41,10 +41,14 @@ export default class ElementView {
 
     /**
      * @param {HTMLElement} htmlElement
+     * @param {string} [listenerContext]
      */
-    constructor(htmlElement) {
+    constructor(htmlElement, listenerContext = 'view') {
+        /** @protected */
+        this._listenerContext = listenerContext;
         /** @protected */
         this._root = htmlElement;
+        /** @protected */
         this._delegate = new ElementView.Delegate(htmlElement);
         this._attachListeners(this.events);
     }
@@ -91,5 +95,30 @@ export default class ElementView {
                 }
             }
         }
+    }
+
+    /**
+     * @return {Object}
+     *
+     * @protected
+     */
+    _getListenerContext() {
+        let context;
+
+        switch (this._listenerContext) {
+            case 'view':
+                context = this;
+                break;
+            case 'root':
+                context = this.root;
+                break;
+            case 'host':
+                context = this.root.host;
+                break;
+            default:
+                context = this;
+        }
+
+        return context;
     }
 }

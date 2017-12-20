@@ -661,6 +661,7 @@ var ElementView$1 = function () {
 
         /**
          * @param {HTMLElement} htmlElement
+         * @param {string} [listenerContext]
          */
 
     }], [{
@@ -676,10 +677,14 @@ var ElementView$1 = function () {
     }]);
 
     function ElementView(htmlElement) {
+        var listenerContext = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'view';
         classCallCheck(this, ElementView);
 
         /** @protected */
+        this._listenerContext = listenerContext;
+        /** @protected */
         this._root = htmlElement;
+        /** @protected */
         this._delegate = new ElementView.Delegate(htmlElement);
         this._attachListeners(this.events);
     }
@@ -747,6 +752,34 @@ var ElementView$1 = function () {
                     })();
                 }
             }
+        }
+
+        /**
+         * @return {Object}
+         *
+         * @protected
+         */
+
+    }, {
+        key: '_getListenerContext',
+        value: function _getListenerContext() {
+            var context = void 0;
+
+            switch (this._listenerContext) {
+                case 'view':
+                    context = this;
+                    break;
+                case 'root':
+                    context = this.root;
+                    break;
+                case 'host':
+                    context = this.root.host;
+                    break;
+                default:
+                    context = this;
+            }
+
+            return context;
         }
     }]);
     return ElementView;
