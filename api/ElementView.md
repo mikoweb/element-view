@@ -27,6 +27,8 @@
 </dd>
 <dt><a href="#_attachListeners">_attachListeners(listeners, [selector])</a></dt>
 <dd></dd>
+<dt><a href="#_getListenerContext">_getListenerContext()</a> ⇒ <code>Object</code></dt>
+<dd></dd>
 </dl>
 
 <a name="Delegate"></a>
@@ -68,3 +70,8 @@ Remove all registered listeners and attach them again.
 | listeners | <code>Object.&lt;String, (function()\|Object.&lt;String, function()&gt;)&gt;</code> |  | 
 | [selector] | <code>String</code> | <code></code> | 
 
+<a name="_getListenerContext"></a>
+
+## _getListenerContext() ⇒ <code>Object</code>
+**Kind**: global function  
+**Access:** protected  
