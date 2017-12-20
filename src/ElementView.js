@@ -76,11 +76,11 @@ export default class ElementView {
                     case 'function':
                         if (selector === null) {
                             this._delegate.on(eventName, (...args) => {
-                                listener.apply(this, args);
+                                listener.apply(this._getListenerContext(), args);
                             });
                         } else if (typeof selector === 'string') {
                             this._delegate.on(eventName, selector, (...args) => {
-                                listener.apply(this, args);
+                                listener.apply(this._getListenerContext(), args);
                             });
                         }
 
