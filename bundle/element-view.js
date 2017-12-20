@@ -728,7 +728,7 @@ var ElementView$1 = function () {
                                             args[_key] = arguments[_key];
                                         }
 
-                                        listener.apply(_this, args);
+                                        listener.apply(_this._getListenerContext(), args);
                                     });
                                 } else if (typeof selector === 'string') {
                                     _this._delegate.on(eventName, selector, function () {
@@ -736,7 +736,7 @@ var ElementView$1 = function () {
                                             args[_key2] = arguments[_key2];
                                         }
 
-                                        listener.apply(_this, args);
+                                        listener.apply(_this._getListenerContext(), args);
                                     });
                                 }
 
