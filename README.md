@@ -1,5 +1,7 @@
 # Element View
 
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/mikoweb/element-view)
+
 It's view layer to HTMLElement, that responsible for Event Handling.
 
 ## Example of use
