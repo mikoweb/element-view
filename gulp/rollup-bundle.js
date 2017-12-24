@@ -14,13 +14,14 @@ const nodeResolve = require('rollup-plugin-node-resolve');
  *
  * @return {Promise}
  */
-module.exports = (inputPath, distFileName, name, babelOptions = {}, globalModules ={}, commonjsOptions = {}) => {
+module.exports = (inputPath, distFileName, name, babelOptions = {}, globalModules = {}, commonjsOptions = {}) => {
     return new Promise((resolve, reject) => {
         rollup.rollup({
             input: inputPath,
+            external: Object.keys(globalModules),
             plugins: [
-                commonjs(commonjsOptions),
-                babel(babelOptions),
+                commonjs(Object.assign({}, commonjsOptions)),
+                babel(Object.assign({}, babelOptions)),
                 nodeResolve()
             ],
         }).then((bundle) => {
