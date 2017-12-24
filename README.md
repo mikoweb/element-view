@@ -68,7 +68,7 @@ Template:
 Custom element:
 
 ```javascript
-class BlockadeProductsElement extends ElementViewMixin(Polymer.Element) {
+class CustomFormElement extends ElementViewMixin(Polymer.Element) {
     static get is() {
         return 'custom-form';
     }
