@@ -75,7 +75,6 @@ class BlockadeProductsElement extends ElementViewMixin(Polymer.Element) {
 
     get events() {
         return {
-            mouseenter: this._onMouseEnter,
             '.form__text': {
                 input: this._onInputText
             },
@@ -83,10 +82,6 @@ class BlockadeProductsElement extends ElementViewMixin(Polymer.Element) {
                 change: this._onChangeChoice
             }
         };
-    }
-
-    _onMouseEnter(event) {
-        // ...
     }
 
     _onInputText(event) {
