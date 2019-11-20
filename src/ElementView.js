@@ -1,4 +1,4 @@
-import domDelegate from 'ftdomdelegate';
+import domDelegate from 'dom-delegate';
 
 /**
  * Simple View layer for HTMLElement
